@@ -1,0 +1,6 @@
+{
+  "name": "Local Image Compression Tool",
+  "description": "Local-first image optimization and resizing tool powered by Node.js, Sharp, and React.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
