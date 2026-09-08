@@ -6,7 +6,7 @@ import { setupApiRoutes } from './app/server/server.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const HOST = '0.0.0.0';
 
 // Ensure default images directory exists
@@ -46,10 +46,8 @@ async function startServer() {
   } else {
     console.log('[App] Running in development mode with Vite middleware');
     const { createServer: createViteServer } = await import('vite');
-    const { default: viteConfig } = await import('./vite.js');
 
     const vite = await createViteServer({
-      ...viteConfig,
       server: {
         middlewareMode: true,
       },

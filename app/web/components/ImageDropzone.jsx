@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { UploadCloud, Image as ImageIcon, FolderPlus, Sparkles } from 'lucide-react';
 
-export default function ImageDropzone({ onFilesSelected, onLoadSamples, isProcessing, totalFiles }) {
+export default function ImageDropzone({ onFilesSelected, isProcessing, totalFiles }) {
   const [isDragOver, setIsDragOver] = useState(false);
   const fileInputRef = useRef(null);
 
@@ -88,19 +88,6 @@ export default function ImageDropzone({ onFilesSelected, onLoadSamples, isProces
               <FolderPlus className="w-3.5 h-3.5" />
               Select Files
             </button>
-
-            {onLoadSamples && (
-              <button
-                type="button"
-                id="load-samples-btn"
-                onClick={onLoadSamples}
-                disabled={isProcessing}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-zinc-100 hover:bg-zinc-200 text-zinc-700 text-xs font-medium transition-colors"
-              >
-                <Sparkles className="w-3.5 h-3.5 text-zinc-500" />
-                Sample Images
-              </button>
-            )}
           </div>
         </div>
 

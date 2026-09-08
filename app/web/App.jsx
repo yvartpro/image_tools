@@ -74,30 +74,7 @@ export default function App() {
 
     setImages((prev) => [...prev, ...processedItems]);
   }, []);
-
-  // Generate test sample images from backend
-  const handleLoadSamples = async () => {
-    setGlobalError(null);
-    try {
-      const res = await fetch('/api/generate-samples', { method: 'POST' });
-      if (!res.ok) throw new Error('Failed to generate sample images.');
-      const data = await res.json();
-
-      const sampleFiles = await Promise.all(
-        data.samples.map(async (sample) => {
-          const blobRes = await fetch(sample.dataUrl);
-          const blob = await blobRes.blob();
-          const file = new File([blob], sample.name, { type: blob.type });
-          return file;
-        })
-      );
-
-      handleFilesSelected(sampleFiles);
-    } catch (err) {
-      setGlobalError(`Sample error: ${err.message}`);
-    }
-  };
-
+  
   // Remove individual image
   const handleRemoveImage = (id) => {
     setImages((prev) => {
@@ -319,7 +296,6 @@ export default function App() {
 
         <ImageDropzone
           onFilesSelected={handleFilesSelected}
-          onLoadSamples={handleLoadSamples}
           isProcessing={isProcessing}
           totalFiles={images.length}
         />
